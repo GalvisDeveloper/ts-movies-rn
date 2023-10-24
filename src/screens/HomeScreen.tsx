@@ -36,12 +36,15 @@ const HomeScreen = () => {
 							renderItem={({ item }: any) => <CardMovie movie={item} />}
 							sliderWidth={screenX}
 							itemWidth={300}
+							inactiveSlideOpacity={0.9}
 						/>
 					</View>
 				)}
 
 				{/* Popular Movies */}
+				<HorizontalSlider title='Popular movies' movies={nowPlaying} />
 				<HorizontalSlider title='In theaters' movies={nowPlaying} />
+				<HorizontalSlider title='Favorites' movies={nowPlaying} />
 
 				<Button title='Go to Detail' onPress={() => navigation.navigate('Detail')} />
 			</View>
