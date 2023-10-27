@@ -1,19 +1,20 @@
 import { useNavigation } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { ActivityIndicator, Button, Dimensions, FlatList, ScrollView, Text, View } from 'react-native';
-import CardMovie from '../components/CardMovie';
-import useMovies from '../hooks/useMovies';
-import { styles } from '../theme/appTheme';
+import { ActivityIndicator, Button, Dimensions, ScrollView, Text, View } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import CardMovie from '../components/CardMovie';
 import HorizontalSlider from '../components/HorizontalSlider';
+import useMovies from '../hooks/useMovies';
+import { Movie } from '../interfaces/movieInterface';
+import { styles } from '../theme/appTheme';
 
 const { width: screenX } = Dimensions.get('window');
 
 const HomeScreen = () => {
 	const navigation = useNavigation<StackNavigationProp<any, any>>();
 
-	const { nowPlaying, isLoading } = useMovies();
+	const { isLoading, nowPlaying, popular, topRated, upcoming } = useMovies();
 
 	if (isLoading) {
 		return (
@@ -33,7 +34,7 @@ const HomeScreen = () => {
 					<View style={styles.carouselCt}>
 						<Carousel
 							data={nowPlaying}
-							renderItem={({ item }: any) => <CardMovie movie={item} />}
+							renderItem={({ item }: { item: Movie }) => <CardMovie movie={item} />}
 							sliderWidth={screenX}
 							itemWidth={300}
 							inactiveSlideOpacity={0.9}
@@ -42,9 +43,13 @@ const HomeScreen = () => {
 				)}
 
 				{/* Popular Movies */}
-				<HorizontalSlider title='Popular movies' movies={nowPlaying} />
-				<HorizontalSlider title='In theaters' movies={nowPlaying} />
-				<HorizontalSlider title='Favorites' movies={nowPlaying} />
+				<HorizontalSlider title='Popular Movies' movies={popular} />
+
+				{/* Top rated */}
+				<HorizontalSlider title='Top Rated' movies={topRated} />
+
+				{/* Upcoming */}
+				<HorizontalSlider title='Upcoming' movies={upcoming} />
 
 				<Button title='Go to Detail' onPress={() => navigation.navigate('Detail')} />
 			</View>
