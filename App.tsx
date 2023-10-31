@@ -4,7 +4,7 @@ import StackNavigator from './src/navigation/StackNavigator';
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer> 
       <StackNavigator />
     </NavigationContainer>
   );
