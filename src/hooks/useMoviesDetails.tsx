@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import movieDB from '../api/movieDB';
-import { CreditsDBResponse, FullInfoMovie } from '../interfaces/movieInterface';
+import { FullInfoMovie } from '../interfaces/movieInterface';
+import { CreditsDBResponse } from '../interfaces/creditsInterface';
 
 interface MovieDetails {
 	cast: any[];

@@ -9,6 +9,7 @@ export const colors = {
 	gray: '#9B9B9B',
 	yellow: '#E1F00F',
 	blue: '#2C70C9',
+	softBlue: '#50bce3',
 };
 
 export const styles = StyleSheet.create({
