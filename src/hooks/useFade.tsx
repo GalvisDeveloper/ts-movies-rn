@@ -1,21 +1,25 @@
 import { useRef } from 'react';
 import { Animated } from 'react-native';
 
-const useFade = () => {
-	const opacity = useRef(new Animated.Value(0.4)).current;
+interface Props {
+	initialOpacity?: number;
+}
+
+const useFade = ({ initialOpacity = 0.3 }: Props) => {
+	const opacity = useRef(new Animated.Value(initialOpacity)).current;
 
 	const fadeIn = () => {
 		Animated.timing(opacity, {
 			toValue: 1,
-			duration: 3000,
+			duration: 1000,
 			useNativeDriver: true,
 		}).start();
 	};
 
 	const fadeOut = () => {
 		Animated.timing(opacity, {
-			toValue: 0.4,
-			duration: 3000,
+			toValue: initialOpacity,
+			duration: 1000,
 			useNativeDriver: true,
 		}).start();
 	};

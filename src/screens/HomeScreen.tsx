@@ -8,6 +8,7 @@ import HorizontalSlider from '../components/HorizontalSlider';
 import useMovies from '../hooks/useMovies';
 import { Movie } from '../interfaces/movieInterface';
 import { styles } from '../theme/appTheme';
+import GradientBackground from '../components/GradientBackground';
 
 const { width: screenX } = Dimensions.get('window');
 
@@ -25,35 +26,37 @@ const HomeScreen = () => {
 	}
 
 	return (
-		<ScrollView>
-			<View style={styles.globalMargin}>
-				<Text style={styles.title}>HomeScreen</Text>
+		<GradientBackground>
+			<ScrollView>
+				<View style={styles.globalMargin}>
+					<Text style={styles.title}>HomeScreen</Text>
 
-				{/* Main Carousel  */}
-				{nowPlaying.length > 0 && (
-					<View style={styles.carouselCt}>
-						<Carousel
-							data={nowPlaying}
-							renderItem={({ item }: { item: Movie }) => <CardMovie movie={item} />}
-							sliderWidth={screenX}
-							itemWidth={300}
-							inactiveSlideOpacity={0.9}
-						/>
-					</View>
-				)}
+					{/* Main Carousel  */}
+					{nowPlaying.length > 0 && (
+						<View style={styles.carouselCt}>
+							<Carousel
+								data={nowPlaying}
+								renderItem={({ item }: { item: Movie }) => <CardMovie movie={item} />}
+								sliderWidth={screenX}
+								itemWidth={300}
+								inactiveSlideOpacity={0.9}
+							/>
+						</View>
+					)}
 
-				{/* Popular Movies */}
-				<HorizontalSlider title='Popular Movies' movies={popular} />
+					{/* Popular Movies */}
+					<HorizontalSlider title='Popular Movies' movies={popular} />
 
-				{/* Top rated */}
-				<HorizontalSlider title='Top Rated' movies={topRated} />
+					{/* Top rated */}
+					<HorizontalSlider title='Top Rated' movies={topRated} />
 
-				{/* Upcoming */}
-				<HorizontalSlider title='Upcoming' movies={upcoming} />
+					{/* Upcoming */}
+					<HorizontalSlider title='Upcoming' movies={upcoming} />
 
-				<Button title='Go to Detail' onPress={() => navigation.navigate('Detail')} />
-			</View>
-		</ScrollView>
+					<Button title='Go to Detail' onPress={() => navigation.navigate('Detail')} />
+				</View>
+			</ScrollView>
+		</GradientBackground>
 	);
 };
 

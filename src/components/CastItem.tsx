@@ -10,8 +10,6 @@ interface Props {
 const CastItem = ({ actor }: Props) => {
 	const uri = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
 
-	console.log(uri);
-
 	return (
 		<View style={localStyles.container}>
 			{actor.profile_path && <Image source={{ uri }} style={{ width: 50, height: 50, borderRadius: 10 }} />}

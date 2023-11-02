@@ -4,7 +4,7 @@ import useFade from '../hooks/useFade';
 import { colors } from '../theme/appTheme';
 
 const FadeScreen = () => {
-	const { opacity, fadeIn, fadeOut } = useFade();
+	const { opacity, fadeIn, fadeOut } = useFade({ initialOpacity: 0.7 });
 
 	return (
 		<View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: 'grey', flex: 1 }}>
