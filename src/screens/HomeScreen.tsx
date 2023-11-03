@@ -9,6 +9,9 @@ import useMovies from '../hooks/useMovies';
 import { Movie } from '../interfaces/movieInterface';
 import { styles } from '../theme/appTheme';
 import GradientBackground from '../components/GradientBackground';
+import ImageColors from 'react-native-image-colors';
+import { getImageColors } from '../helpers/getColors';
+import { useSelector } from 'react-redux';
 
 const { width: screenX } = Dimensions.get('window');
 
@@ -16,6 +19,22 @@ const HomeScreen = () => {
 	const navigation = useNavigation<StackNavigationProp<any, any>>();
 
 	const { isLoading, nowPlaying, popular, topRated, upcoming } = useMovies();
+
+	const { colors } = useSelector((state: any) => state.cards);
+
+	console.log(colors);
+
+	const getCardColors = async (index: number) => {
+		const movie = nowPlaying[index];
+		const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+		const colors = await ImageColors.getColors(uri, {
+			key: uri,
+		});
+
+		const [primary, secondary] = await getImageColors(uri);
+
+		console.log({ primary, secondary });
+	};
 
 	if (isLoading) {
 		return (
@@ -40,6 +59,7 @@ const HomeScreen = () => {
 								sliderWidth={screenX}
 								itemWidth={300}
 								inactiveSlideOpacity={0.9}
+								onSnapToItem={(index) => getCardColors(index)}
 							/>
 						</View>
 					)}
