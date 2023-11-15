@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
-	colors: ['#123abc'],
-	loading: false,
+	colors: null,
 };
 
 export const cardSlice = createSlice({

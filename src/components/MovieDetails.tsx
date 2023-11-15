@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Cast, FullInfoMovie } from '../interfaces/movieInterface';
-import { styles } from '../theme/appTheme';
+import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { FullInfoMovie } from '../interfaces/movieInterface';
+import { styles } from '../theme/appTheme';
 
 import currencyFormatter from 'currency-formatter';
-import CastItem from './CastItem';
 import { FlatList } from 'react-native-gesture-handler';
+import { Cast } from '../interfaces/creditsInterface';
+import CastItem from './CastItem';
 
 interface Props {
 	fullInfoMovie: FullInfoMovie;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const MovieDetails = ({ fullInfoMovie, cast }: Props) => {
+
 	return (
 		<View style={{ ...styles.globalMargin, gap: 20, marginBottom: 20 }}>
 			{/* Details */}

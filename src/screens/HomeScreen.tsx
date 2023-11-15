@@ -1,17 +1,17 @@
 import { useNavigation } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { ActivityIndicator, Button, Dimensions, ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, ScrollView, Text, View } from 'react-native';
+import ImageColors from 'react-native-image-colors';
 import Carousel from 'react-native-snap-carousel';
 import CardMovie from '../components/CardMovie';
+import GradientBackground from '../components/GradientBackground';
 import HorizontalSlider from '../components/HorizontalSlider';
+import { getImageColors } from '../helpers/getColors';
+import useCardSelector from '../hooks/selectors/useCardSelector';
 import useMovies from '../hooks/useMovies';
 import { Movie } from '../interfaces/movieInterface';
 import { styles } from '../theme/appTheme';
-import GradientBackground from '../components/GradientBackground';
-import ImageColors from 'react-native-image-colors';
-import { getImageColors } from '../helpers/getColors';
-import { useSelector } from 'react-redux';
 
 const { width: screenX } = Dimensions.get('window');
 
@@ -20,7 +20,7 @@ const HomeScreen = () => {
 
 	const { isLoading, nowPlaying, popular, topRated, upcoming } = useMovies();
 
-	const { colors } = useSelector((state: any) => state.cards);
+	const { colors } = useCardSelector();
 
 	console.log(colors);
 
@@ -33,7 +33,7 @@ const HomeScreen = () => {
 
 		const [primary, secondary] = await getImageColors(uri);
 
-		console.log({ primary, secondary });
+		// console.log({ primary, secondary });
 	};
 
 	if (isLoading) {
@@ -73,7 +73,6 @@ const HomeScreen = () => {
 					{/* Upcoming */}
 					<HorizontalSlider title='Upcoming' movies={upcoming} />
 
-					<Button title='Go to Detail' onPress={() => navigation.navigate('Detail')} />
 				</View>
 			</ScrollView>
 		</GradientBackground>

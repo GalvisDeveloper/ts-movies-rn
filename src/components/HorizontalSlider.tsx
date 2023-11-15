@@ -9,6 +9,7 @@ interface Props {
 }
 
 const HorizontalSlider = ({ title, movies }: Props) => {
+	
 	return (
 		<View style={{ height: title ? 260 : 230 }}>
 			{title && <Text style={{ fontSize: 30, fontWeight: 'bold', marginLeft: 10 }}>{title}</Text>}
