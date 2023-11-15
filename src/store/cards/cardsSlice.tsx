@@ -1,7 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
-	colors: null,
+	colors: {
+		primary: 'transparent',
+		secondary: 'transparent',
+	},
+	prevColors: {
+		primary: 'transparent',
+		secondary: 'transparent',
+	},
 };
 
 export const cardSlice = createSlice({
@@ -9,7 +16,16 @@ export const cardSlice = createSlice({
 	initialState,
 	reducers: {
 		setColors(state, { payload }) {
-			state.colors = payload;
+			state.colors = {
+				...state.colors,
+				...payload,
+			};
+		},
+		setPrevColors(state, { payload }) {
+			state.prevColors = {
+				...state.prevColors,
+				...payload,
+			};
 		},
 		resetCardSlice(state) {
 			Object.assign(state, initialState);
@@ -17,4 +33,4 @@ export const cardSlice = createSlice({
 	},
 });
 
-export const { setColors, resetCardSlice } = cardSlice.actions;
+export const { setColors, setPrevColors, resetCardSlice } = cardSlice.actions;

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { ActivityIndicator, Dimensions, ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, ScrollView, Text, View, Button } from 'react-native';
 import ImageColors from 'react-native-image-colors';
 import Carousel from 'react-native-snap-carousel';
 import CardMovie from '../components/CardMovie';
@@ -20,7 +20,7 @@ const HomeScreen = () => {
 
 	const { isLoading, nowPlaying, popular, topRated, upcoming } = useMovies();
 
-	const { colors } = useCardSelector();
+	const { colors, updateColor } = useCardSelector();
 
 	console.log(colors);
 
@@ -31,9 +31,11 @@ const HomeScreen = () => {
 			key: uri,
 		});
 
+		// console.log(colors);
+
 		const [primary, secondary] = await getImageColors(uri);
 
-		// console.log({ primary, secondary });
+		console.log({ primary, secondary });
 	};
 
 	if (isLoading) {
@@ -73,6 +75,7 @@ const HomeScreen = () => {
 					{/* Upcoming */}
 					<HorizontalSlider title='Upcoming' movies={upcoming} />
 
+					{/* <Button onPress={() => updateColor(data)} title='tesst' /> */}
 				</View>
 			</ScrollView>
 		</GradientBackground>

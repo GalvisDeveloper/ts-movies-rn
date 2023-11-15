@@ -1,15 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setColors } from '../../store/cards/cardsSlice';
+import { setColors, setPrevColors } from '../../store/cards/cardsSlice';
 
 const useCardSelector = () => {
-
 	const dispatch = useDispatch();
 
 	const { colors } = useSelector((state: any) => state.cards);
 
-	const updateColor = (color: string) => {
+	const updateColor = (color: object) => {
 		dispatch(setColors(color));
-	 }
+	};
+
+	const updatePrevColor = (color: object) => {
+		dispatch(setPrevColors(color));
+	};
 
 	return {
 		//states
@@ -17,6 +20,7 @@ const useCardSelector = () => {
 
 		//functions
 		updateColor,
+		updatePrevColor,
 	};
 };
 
