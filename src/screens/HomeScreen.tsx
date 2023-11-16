@@ -12,6 +12,7 @@ import useCardSelector from '../hooks/selectors/useCardSelector';
 import useMovies from '../hooks/useMovies';
 import { Movie } from '../interfaces/movieInterface';
 import { styles } from '../theme/appTheme';
+import { useEffect } from 'react';
 
 const { width: screenX } = Dimensions.get('window');
 
@@ -20,23 +21,13 @@ const HomeScreen = () => {
 
 	const { isLoading, nowPlaying, popular, topRated, upcoming } = useMovies();
 
-	const { colors, updateColor } = useCardSelector();
+	const { getCardColors } = useCardSelector();
 
-	console.log(colors);
-
-	const getCardColors = async (index: number) => {
-		const movie = nowPlaying[index];
-		const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-		const colors = await ImageColors.getColors(uri, {
-			key: uri,
-		});
-
-		// console.log(colors);
-
-		const [primary, secondary] = await getImageColors(uri);
-
-		console.log({ primary, secondary });
-	};
+	useEffect(() => {
+		if (nowPlaying.length > 0) {
+			getCardColors(nowPlaying, 0);
+		}
+	}, [nowPlaying]);
 
 	if (isLoading) {
 		return (
@@ -50,7 +41,7 @@ const HomeScreen = () => {
 		<GradientBackground>
 			<ScrollView>
 				<View style={styles.globalMargin}>
-					<Text style={styles.title}>HomeScreen</Text>
+					{/* <Text style={styles.title}>HomeScreen</Text> */}
 
 					{/* Main Carousel  */}
 					{nowPlaying.length > 0 && (
@@ -60,8 +51,8 @@ const HomeScreen = () => {
 								renderItem={({ item }: { item: Movie }) => <CardMovie movie={item} />}
 								sliderWidth={screenX}
 								itemWidth={300}
-								inactiveSlideOpacity={0.9}
-								onSnapToItem={(index) => getCardColors(index)}
+								inactiveSlideOpacity={0.5}
+								onSnapToItem={(index) => getCardColors(nowPlaying, index)}
 							/>
 						</View>
 					)}

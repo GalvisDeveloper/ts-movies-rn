@@ -3,23 +3,25 @@ import { Animated } from 'react-native';
 
 interface Props {
 	initialOpacity?: number;
+	timing?: number;
+	maxOpacity?: number;
 }
 
-const useFade = ({ initialOpacity = 0.3 }: Props) => {
+const useFade = ({ initialOpacity = 0.3, timing = 1000, maxOpacity = 1 }: Props) => {
 	const opacity = useRef(new Animated.Value(initialOpacity)).current;
 
-	const fadeIn = () => {
+	const fadeIn = (callback?: Function) => {
 		Animated.timing(opacity, {
-			toValue: 1,
-			duration: 1000,
+			toValue: maxOpacity,
+			duration: timing,
 			useNativeDriver: true,
-		}).start();
+		}).start(() => callback ? callback() : null);
 	};
 
 	const fadeOut = () => {
 		Animated.timing(opacity, {
 			toValue: initialOpacity,
-			duration: 1000,
+			duration: timing,
 			useNativeDriver: true,
 		}).start();
 	};
