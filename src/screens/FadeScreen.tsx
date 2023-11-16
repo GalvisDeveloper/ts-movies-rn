@@ -21,7 +21,7 @@ const FadeScreen = () => {
 				<Text>FadeScreen</Text>
 			</Animated.View>
 
-			<Button onPress={fadeIn} title='Animate' />
+			<Button onPress={() => fadeIn()} title='Animate' />
 			<Button onPress={fadeOut} title='Unanimate' />
 		</View>
 	);
