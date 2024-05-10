@@ -1,4 +1,4 @@
-package com.ts_movies_rn;
+package com.galvisdev.ts_movies_rn;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

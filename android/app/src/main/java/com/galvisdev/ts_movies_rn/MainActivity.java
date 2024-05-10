@@ -1,4 +1,4 @@
-package com.ts_movies_rn;
+package com.galvisdev.ts_movies_rn;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

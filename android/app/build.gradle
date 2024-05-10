@@ -78,9 +78,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.ts_movies_rn"
+    namespace "com.galvisdev.ts_movies_rn"
     defaultConfig {
-        applicationId "com.ts_movies_rn"
+        applicationId "com.galvisdev.ts_movies_rn"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
